@@ -1,6 +1,5 @@
 package locadora;
 import locadora.fitas.FitaNormal;
-import RefatoracaoLocadora.Livro;
 import locadora.fitas.FitaInfantil;
 import locadora.fitas.FitaLancamento;
 
