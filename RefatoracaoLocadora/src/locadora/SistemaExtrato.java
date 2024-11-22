@@ -1,7 +1,8 @@
 package locadora;
-import java.util.Iterator;
+;
 
-public class SistemaExtrato {	
+public class SistemaExtrato {
+		
 	private Cliente cliente;
 	
 	
@@ -16,24 +17,34 @@ public class SistemaExtrato {
 		final String fimDeLinha = System.getProperty("line.separator");
 		double valorTotal = 0.0;
 		int pontosDeAlugadorFrequente = 0;
-		Iterator alugueis = cliente.getFitasAlugadas().iterator();
-		String resultado = "Registro de Alugueis de " + cliente.getNome() + fimDeLinha;
 		
-		while(alugueis.hasNext()) {
+		StringBuilder resultado = new StringBuilder();
+		resultado.append("Registro de Alugueis de ");
+		resultado.append( cliente.getNome());
+		resultado.append(fimDeLinha);
+		
+		
+		for(Aluguel produtosAlugados: cliente.getFitasAlugadas()) {
 			
-			Aluguel fitaAlugada = (Aluguel)alugueis.next();
-			valorTotal += fitaAlugada.valorAluguel();
-			pontosDeAlugadorFrequente += fitaAlugada.pontosFidelidade();
+			valorTotal += produtosAlugados.valorAluguel();
+			pontosDeAlugadorFrequente += produtosAlugados.pontosFidelidade();
 			// mostra valores para este aluguel
-			resultado += "\t" + fitaAlugada.getTitutoFita() + "\t"+ fitaAlugada.valorAluguel() +
-			fimDeLinha;
-		} // while
+			resultado.append("\t" );
+			resultado.append(produtosAlugados.getTitutoFita() );
+			resultado.append("\t");
+			resultado.append(produtosAlugados.valorAluguel());
+			resultado.append(fimDeLinha);
+			
+		} 
 		// adiciona rodapé
 	
-		resultado += "Valor total devido: " + valorTotal + fimDeLinha;
-		resultado += "Voce acumulou " + pontosDeAlugadorFrequente +
-		" pontos de alugador frequente";
-		return resultado;
+		resultado.append( "Valor total devido: ");
+		resultado.append( valorTotal);
+		resultado.append(fimDeLinha);
+		resultado.append("Voce acumulou " );
+		resultado.append(pontosDeAlugadorFrequente);
+		resultado.append(" pontos de alugador frequente");
+		return resultado.toString();
 			
 		}
 }

@@ -1,23 +1,22 @@
 package locadora;
-import locadora.fitas.Fita;
 
 public class Aluguel {
-	private Fita fita;
+	private Alugaveis fita;
 	private int diasAlugada;
 	
 	
-	public Aluguel(Fita fita, int diasAlugada) {
+	public Aluguel(Alugaveis fita, int diasAlugada) {
 		this.fita = fita;
 		this.diasAlugada = diasAlugada;
 	}
-	public Fita getFita() {
+	public Alugaveis getFita() {
 		return fita;
 	}
 	public int getDiasAlugada() {
 		return diasAlugada;
 	}
 	public String getTitutoFita() {
-		return fita.getTitulo();
+		return fita.getDescricao();
 		}
 	
 	public double valorAluguel() {
