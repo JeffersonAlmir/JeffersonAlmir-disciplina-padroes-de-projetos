@@ -42,7 +42,7 @@ public class ProntuarioTest {
 		prontuario.addProcedimento(new Procedimento(new Basico()));
 		prontuario.addProcedimento(new Procedimento(new Avancado()));
 
-		FileService prontuarioService = new CsvProntuarioService(prontuario);
+		GerenciadorDeImpressao impressao = new ConsolePrinter(prontuario);
 
 		final String respostaEsperada = "----------------------------------------------------------------------------------------------" +
 				"\nA conta do(a) paciente Paul McCartney tem valor total de __ R$ 550,00 __" +
@@ -56,7 +56,7 @@ public class ProntuarioTest {
 				"\nVolte sempre, a casa é sua!" +
 				"\n----------------------------------------------------------------------------------------------";
 
-		assertEquals(respostaEsperada, prontuarioService.imprimaConta());
+		assertEquals(respostaEsperada, impressao.imprimaConta());
 	}
 
 	@Test
@@ -70,7 +70,7 @@ public class ProntuarioTest {
 		prontuario.addProcedimento(new Procedimento(new Comum()));
 		prontuario.addProcedimento(new Procedimento(new Avancado()));
 
-		FileService prontuarioService = new CsvProntuarioService(prontuario);
+		GerenciadorDeImpressao impressao = new ConsolePrinter(prontuario);
 
 		final String respostaEsperada = "----------------------------------------------------------------------------------------------" +
 				"\nA conta do(a) paciente Nando Reis tem valor total de __ R$ 1.210,00 __" +
@@ -88,14 +88,15 @@ public class ProntuarioTest {
 				"\nVolte sempre, a casa é sua!" +
 				"\n----------------------------------------------------------------------------------------------";
 
-		assertEquals(respostaEsperada, prontuarioService.imprimaConta());
+		assertEquals(respostaEsperada, impressao.imprimaConta());
 	}
 
 	@Test
 	public void testSomenteInternacao() {
 		Prontuario prontuario = new Prontuario("MC Criolo");
 		prontuario.setInternacao(new Internacao(new Enfermaria(), 1));
-		FileService prontuarioService = new CsvProntuarioService(prontuario);
+
+		GerenciadorDeImpressao impressao = new ConsolePrinter(prontuario);
 
 		final String respostaEsperada = "----------------------------------------------------------------------------------------------" +
 				"\nA conta do(a) paciente MC Criolo tem valor total de __ R$ 40,00 __" +
@@ -108,7 +109,7 @@ public class ProntuarioTest {
 				"\nVolte sempre, a casa é sua!" +
 				"\n----------------------------------------------------------------------------------------------";
 
-		assertEquals(respostaEsperada,prontuarioService.imprimaConta() );
+		assertEquals(respostaEsperada, impressao.imprimaConta() );
 	}
 
 	@Test
